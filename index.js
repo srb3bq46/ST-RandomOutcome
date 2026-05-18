@@ -1,36 +1,34 @@
-import {
-    eventSource,
-    event_types,
-    getContext
-} from '../../../../script.js';
-
-let lastRoll = null;
+const MODULE_NAME = 'auto-d100';
 
 function rollD100() {
     return Math.floor(Math.random() * 100) + 1;
 }
 
-function injectRoll(context) {
-    if (lastRoll === null) return;
+jQuery(async () => {
+    const context = SillyTavern.getContext();
 
-    // Inject into Author's Note or system prompt
-    // This becomes visible to the AI
-    const injection = `Current d100 roll result: ${lastRoll}`;
+    const {
+        eventSource,
+        event_types,
+        chatMetadata,
+        saveMetadata,
+    } = context;
 
-    context.setExtensionPrompt(
-        'auto-d100',
-        injection,
-        1,
-        1
-    );
-}
+    eventSource.on(event_types.GENERATION_STARTED, async () => {
+        const roll = rollD100();
 
-eventSource.on(event_types.USER_MESSAGE_RENDERED, async () => {
-    lastRoll = rollD100();
+        console.log(`[${MODULE_NAME}] Rolled ${roll}`);
 
-    console.log(`[AutoD100] Rolled: ${lastRoll}`);
+        // Store for macros / persistence
+        chatMetadata.auto_d100 = roll;
 
-    const context = getContext();
+        await saveMetadata();
 
-    injectRoll(context);
+        // Inject into prompt
+        context.setExtensionPrompt(
+            MODULE_NAME,
+            `[SYSTEM: Current d100 roll is ${roll}. Use it for uncertainty resolution.]`,
+            'system'
+        );
+    });
 });
