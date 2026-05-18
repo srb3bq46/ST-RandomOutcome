@@ -28,6 +28,7 @@ jQuery(async () => {
         const msg = `[SYSTEM: Current d100 roll is ${roll}. Use it for uncertainty resolution.]`
         context.setExtensionPrompt("random-outcome-roll", msg, extension_prompt_types.IN_CHAT, 0, extension_prompt_roles.USER, false)  // k v pos depth scan role filter
         console.log(msg);
+        console.log(extension_prompt_roles.USER)
         await saveMetadata();
     });
 });
