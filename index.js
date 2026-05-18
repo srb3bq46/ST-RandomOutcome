@@ -66,7 +66,7 @@ jQuery(async () => {
         const roll = Math.random();
         console.log(`[SYSTEM: Current roll is ${roll}.]`);
         context.setExtensionPrompt(
-            MODULE_NAME, getOutcome(roll), extension_prompt_types.IN_PROMPT, 9998, false, extension_prompt_roles.USER, null
+            MODULE_NAME, getOutcome(roll), extension_prompt_types.IN_CHAT, 0, false, extension_prompt_roles.USER, null
         ); // key, value, position, depth, use_in_worldingo_scan, role, filter_func
         await saveMetadata();
     });
