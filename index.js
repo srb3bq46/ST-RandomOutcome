@@ -4,6 +4,8 @@ export { MODULE_NAME };
 const MODULE_NAME = 'random-outcome';
 
 function getOutcome(roll){
+    let trivial_outcome, easy_outcome, difficult_outcome, arduous_outcome;
+
     if (roll < 0.95){
         trivial_outcome = "full success";
     } else if (0.95 <= roll && roll < 0.99){
