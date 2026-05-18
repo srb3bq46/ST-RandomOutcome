@@ -65,7 +65,7 @@ jQuery(async () => {
         
         const roll = Math.random();
         console.log(`[SYSTEM: Current roll is ${roll}.]`);
-        context.setExtensionPrompt(MODULE_NAME, getOutcome(roll), extension_prompt_types.IN_CHAT, 0, 0, extension_prompt_roles.SYSTEM, false)  // k v pos depth scan role filter
+        context.setExtensionPrompt(MODULE_NAME, getOutcome(roll), extension_prompt_types.IN_CHAT, -1, 0, extension_prompt_roles.SYSTEM, false)  // k v pos depth scan role filter
         await saveMetadata();
     });
 });
