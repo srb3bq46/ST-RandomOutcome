@@ -43,7 +43,7 @@ function getOutcome(roll){
     } else {
         arduous_outcome = "failure with further complication"
     }
-    return `[RANDOM OUTCOME BY MAIN TASK DIFFICULTY. Trivial: ${trivial_outcome}. Easy (odds in favor): ${easy_outcome}. Difficult (50/50): ${difficult_outcome}. Arduous (odds against you): ${arduous_outcome}. Use this to determine the outcome for the main challenge (most important, not necessarily the hardest). If there are secondary challenges, resolve as you see fit, regardless of random outcomes.]`
+    return `[RANDOM OUTCOME BY MAIN TASK DIFFICULTY. Trivial: ${trivial_outcome}. Easy (odds in favor): ${easy_outcome}. Difficult (50/50): ${difficult_outcome}. Arduous (odds against you): ${arduous_outcome}. Use this to determine the outcome for the main challenge (most important, not necessarily the hardest). If there are secondary challenges, resolve as you see fit, regardless of random outcomes. If there are no unresolved challenges, ignore random outcome and narrate as you see fit.]`
 }
 
 
